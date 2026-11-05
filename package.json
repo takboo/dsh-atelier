@@ -1,0 +1,37 @@
+{
+  "name": "@local/dsh-atelier",
+  "version": "1.4.2",
+  "private": true,
+  "type": "module",
+  "description": "Six cohesive visual directions for DeepSeek Harness, including Celadon Studio, with Light/Dark pairing and native font compatibility.",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.zh.md"
+  ],
+  "engines": {
+    "node": ">=20",
+    "dsh": "0.2.1-rc.5"
+  },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-theme"
+      ]
+    }
+  }
+}

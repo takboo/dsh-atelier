@@ -1,0 +1,3 @@
+- insert:
+    - id: atelier
+      name: '@local/dsh-atelier'
