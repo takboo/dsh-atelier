@@ -1,0 +1,38 @@
+export const NS = 'atelier';
+
+export const en = {
+  nav: 'Atelier', eyebrow: 'DSH / VISUAL DIRECTIONS', title: 'Choose your atmosphere.',
+  subtitle: 'Six complete visual languages. One workspace. Your type settings stay yours.',
+  current: 'Now showing', native: 'DSH native',
+  applied: 'Applied to the entire app', reset: 'Restore native',
+  fontNote: 'Text, code, and terminal fonts and sizes remain controlled by DSH Settings.',
+  previewChat: 'Chat', previewFiles: 'Files',
+  previewMessage: 'Make every pixel intentional.', previewPrompt: 'Ask anything…',
+  appearance: 'Appearance', light: 'Light', dark: 'Dark', system: 'Follow system', all: 'All styles',
+  lightTheme: 'Light theme', darkTheme: 'Dark theme', filter: 'Filter styles',
+  systemLight: 'System is light', systemDark: 'System is dark', waiting: 'Saved for this appearance',
+  'pixel.name': 'Blockrealm', 'pixel.tag': 'BLOCK / CRAFT', 'pixel.description': 'Grass, stone, timber, and torchlight. A tactile block world built for big ideas.',
+  'paper.name': 'Paper Garden', 'paper.tag': 'TACTILE / BOTANICAL', 'paper.description': 'Warm paper, sage ink, and softened edges. A calm desk with room to think.',
+  'midnight.name': 'Midnight Neon', 'midnight.tag': 'LUMINOUS / NOCTURNAL', 'midnight.description': 'Ultraviolet surfaces traced in cyan and pink. Focused, cinematic, after-hours energy.',
+  'bauhaus.name': 'Bauhaus Workshop', 'bauhaus.tag': 'GEOMETRIC / PRIMARY', 'bauhaus.description': 'Primary pigments, honest geometry, and bold rules. Form follows imagination.',
+  'mono.name': 'Mono Study', 'mono.tag': 'ESSENTIAL / EDITORIAL', 'mono.description': 'Black, white, and nothing extra. An exacting canvas where content takes the lead.',
+  'celadon.name': 'Celadon Studio', 'celadon.tag': 'CERAMIC / VERDANT', 'celadon.description': 'Warm porcelain, jade glaze, pine ink, and cinnabar seals. Quiet craftsmanship for focused work.',
+};
+export const zh = {
+  nav: '风格画廊', eyebrow: 'DSH / 视觉企划', title: '为思想，选一种氛围。',
+  subtitle: '六种完整的视觉语言，同一个工作空间。你的字体设置，始终由你掌握。',
+  current: '当前风格', native: 'DSH 原生',
+  applied: '已应用到整个应用', reset: '恢复原生',
+  fontNote: '正文、代码与终端的字体和字号，仍由 DSH 设置独立控制。',
+  previewChat: '会话', previewFiles: '文件',
+  previewMessage: '让每一处细节都有意图。', previewPrompt: '输入你的想法…',
+  appearance: '外观模式', light: '浅色', dark: '深色', system: '跟随系统', all: '全部风格',
+  lightTheme: '浅色主题', darkTheme: '深色主题', filter: '筛选风格',
+  systemLight: '系统当前为浅色', systemDark: '系统当前为深色', waiting: '已保存到对应外观',
+  'pixel.name': '方块远征', 'pixel.tag': '方块 / 建造', 'pixel.description': '草木、岩石、泥土与火把微光。把天马行空的灵感，建造成立体的方块世界。',
+  'paper.name': '纸上花园', 'paper.tag': '触感 / 植物', 'paper.description': '暖纸、苔绿与柔和边缘。像一张安静的书桌，让思绪自然生长。',
+  'midnight.name': '午夜霓虹', 'midnight.tag': '流光 / 夜色', 'midnight.description': '深紫表面勾勒青蓝与紫粉高光。专注、电影感，还有一点午夜能量。',
+  'bauhaus.name': '包豪斯工坊', 'bauhaus.tag': '几何 / 三原色', 'bauhaus.description': '原色、几何与大胆轮廓。形式追随功能，也追随想象力。',
+  'mono.name': '黑白极简', 'mono.tag': '纯粹 / 编辑', 'mono.description': '黑、白，以及恰到好处的一切。让内容成为唯一的主角。',
+  'celadon.name': '青瓷造物', 'celadon.tag': '青瓷 / 器物', 'celadon.description': '白瓷、青玉、松烟墨与朱砂印。以温润器物之美，安放专注而清晰的思想。',
+};

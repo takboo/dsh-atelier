@@ -1,0 +1,62 @@
+name: Release
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing tag matching package.json, e.g. v1.4.2
+        required: true
+        type: string
+      dry_run:
+        description: Build and verify artifacts without publishing
+        type: boolean
+        default: true
+permissions:
+  contents: read
+concurrency:
+  group: atelier-release
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.repository == 'takboo/dsh-atelier'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      id-token: write
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      RELEASE_PRERELEASE: ${{ github.event_name == 'release' && toJSON(github.event.release.prerelease) || '' }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: npm ci
+      - name: Validate tag, build, check and pack once
+        run: npm run release:prepare
+      - uses: actions/upload-artifact@v6
+        with:
+          name: atelier-${{ env.RELEASE_TAG }}
+          path: artifacts/${{ env.RELEASE_TAG }}/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Publish the verified tarball to npm
+        if: github.event_name == 'release' || !inputs.dry_run
+        run: node scripts/publish-npm.mjs
+      - name: Attach the same tarball to GitHub Release
+        if: github.event_name == 'release' || !inputs.dry_run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "$RELEASE_TAG" \
+            "artifacts/$RELEASE_TAG/dsh-atelier.tgz" \
+            "artifacts/$RELEASE_TAG/dsh-atelier-${RELEASE_TAG#v}.tgz" \
+            "artifacts/$RELEASE_TAG/SHA256SUMS" \
+            "artifacts/$RELEASE_TAG/verification.json"

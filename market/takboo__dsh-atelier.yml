@@ -1,0 +1,7 @@
+url: https://github.com/takboo/dsh-atelier
+name: takboo/dsh-atelier
+category: theme
+description:
+  en: Six visual themes for DeepSeek Harness with light/dark pairing, system appearance switching, and native font settings.
+  zh: 为 DeepSeek Harness 提供六套视觉主题，支持明暗搭配与跟随系统，保留原生字体设置。
+tarball: https://github.com/takboo/dsh-atelier/releases/latest/download/dsh-atelier.tgz

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atelier · 隔离预览</title>
+  <style>
+    body { margin: 0; font-family: var(--dsw-font-family); background: var(--dsw-alias-bg-base); color: var(--dsw-alias-label-primary); }
+    button { font-family: inherit; }
+    #demo-tools { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 16px 24px; border-top: 1px solid var(--dsw-alias-border-l1); font-size: 12px; }
+    #demo-tools button { padding: 8px 12px; color: inherit; background: var(--dsw-alias-bg-layer-1); border: 1px solid var(--dsw-alias-border-l2); border-radius: var(--dsw-radius-sm); cursor: pointer; }
+    #host-probe { padding: 20px; }
+    #host-probe button { padding: 10px 20px; }
+    #font-probe { font-size: var(--dsh-content-font-size); }
+  </style>
+</head>
+<body>
+  <div data-slot="main"><div id="gallery"></div></div>
+  <aside id="demo-tools" aria-label="隔离预览工具">
+    <span>隔离预览 · 官方 rc.5 主题运行时 · 无真实会话</span>
+    <button data-native="light">原生浅色</button><button data-native="dark">原生深色</button><button data-native="system">原生跟随系统</button>
+  </aside>
+  <section id="host-probe" aria-label="宿主样式回归夹具">
+    <button class="hHd-Xa_newSession" id="new-session">新建会话</button>
+    <span class="hHd-Xa_newSessionContent" id="content-probe">按钮之外的内容</span>
+    <p id="font-probe">字体设置回归检查</p>
+  </section>
+  <script type="module" src="/preview.js"></script>
+</body>
+</html>

@@ -1,14 +1,15 @@
 {
-  "name": "@local/dsh-atelier",
+  "name": "@takboo/dsh-atelier",
   "version": "1.4.2",
-  "private": true,
   "type": "module",
-  "description": "Six cohesive visual directions for DeepSeek Harness, including Celadon Studio, with Light/Dark pairing and native font compatibility.",
+  "description": "Six visual themes for DeepSeek Harness with light/dark pairing and automatic system switching.",
   "exports": {
     ".": "./index.js",
     "./client": "./client.js",
     "./locale/*.json": "./locale/*.json",
-    "./icon": "./icon.svg"
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
   },
   "files": [
     "index.js",
@@ -16,22 +17,94 @@
     "cordis.patch.yml",
     "locale/*.json",
     "icon.svg",
-    "README.zh.md"
+    "README.md",
+    "docs/*.md",
+    "docs/assets/*.png",
+    "LICENSE",
+    "market/*.yml",
+    "CHANGELOG.md"
   ],
   "engines": {
     "node": ">=20",
     "dsh": "0.2.1-rc.5"
   },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "test:ui": "node scripts/browser-check.mjs",
+    "dev": "node scripts/preview.mjs",
+    "screenshots": "node scripts/browser-check.mjs --screenshots",
+    "check": "npm run build && npm test && npm run test:ui && npm run verify:package",
+    "prepack": "npm run build",
+    "verify:package": "node scripts/verify-package.mjs",
+    "release:prepare": "npm run check && node scripts/prepare-release.mjs"
+  },
+  "devDependencies": {
+    "@deepseek-ai/dsh-client-ui-theme": "0.2.1-rc.5",
+    "esbuild": "0.25.12",
+    "playwright-core": "1.56.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@deepseek-ai/cordis": "4.0.5",
+    "@deepseek-ai/dsh-client-locale": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-sidebar": "0.2.1-rc.5",
+    "yaml": "2.9.1",
+    "semver": "7.7.3"
+  },
   "dsh": {
-    "bundle": { "patch": "./cordis.patch.yml" },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
     "client": {
       "platform": "web",
-      "immediately": true,
       "inject": [
         "@deepseek-ai/dsh-client-locale",
         "@deepseek-ai/dsh-client-ui-sidebar",
         "@deepseek-ai/dsh-client-ui-theme"
       ]
+    },
+    "manifestVersion": 1
+  },
+  "license": "MIT",
+  "author": "takboo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takboo/dsh-atelier.git"
+  },
+  "homepage": "https://github.com/takboo/dsh-atelier#readme",
+  "bugs": {
+    "url": "https://github.com/takboo/dsh-atelier/issues"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "dsh",
+    "theme",
+    "appearance"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "main": "./index.js",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5",
+    "@deepseek-ai/dsh-client-locale": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-sidebar": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-theme": "0.2.1-rc.5"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-locale": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-ui-sidebar": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-ui-theme": {
+      "optional": true
     }
   }
 }

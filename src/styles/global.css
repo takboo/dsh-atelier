@@ -1,0 +1,340 @@
+body[data-atelier-style] ::selection {
+  background: var(--dsw-alias-bg-document-selection);
+  color: var(--dsw-alias-label-primary);
+}
+body[data-atelier-style] [data-composer-card],
+body[data-atelier-style] [class*=_panelRow],
+body[data-atelier-style] [data-chat-flow-kind=user] [class*=_bubble] {
+  transition:
+    border-color .18s ease,
+    box-shadow .18s ease,
+    background-color .18s ease;
+}
+html[data-platform=darwin] body[data-atelier-style] [class*=_sidebarCol] {
+  background: var(--dsw-specific-sidebar-fill);
+}
+body[data-atelier-style=pixel] {
+  --dsh-scrollbar-width:8px;
+}
+body[data-atelier-style=pixel] *::-webkit-scrollbar-thumb {
+  border-radius: 0;
+}
+body[data-atelier-style=pixel] .atelier-root,
+body[data-atelier-style=pixel] [data-slot=main] > * {
+  background-color: #171a17;
+  background-image:
+    linear-gradient(
+      45deg,
+      #ffffff03 25%,
+      transparent 25%,
+      transparent 75%,
+      #ffffff03 75%),
+    linear-gradient(
+      45deg,
+      #00000008 25%,
+      transparent 25%,
+      transparent 75%,
+      #00000008 75%);
+  background-position: 0 0, 8px 8px;
+  background-size: 16px 16px;
+}
+html[data-platform=darwin] body[data-atelier-style=pixel] [class*=_sidebarCol] {
+  background-color: #29241d;
+  background-image:
+    linear-gradient(
+      90deg,
+      #ffffff04 50%,
+      transparent 50%),
+    linear-gradient(#0000000a 50%, transparent 50%);
+  background-size: 12px 12px;
+}
+html body[data-atelier-style=pixel] :is([class$=_newSession], [class*="_newSession "]) {
+  border: 2px solid #141a12;
+  background: #6f934a;
+  box-shadow:
+    inset 0 4px 0 #96bd66,
+    inset 0 -4px 0 #455e30,
+    3px 3px 0 #00000066;
+}
+body[data-atelier-style=pixel] [class*=_panelRow] {
+  border: 2px solid transparent;
+  box-shadow: none;
+}
+body[data-atelier-style=pixel] [class*=_panelRow][class*=_panelActive] {
+  border-color: #a8b39a;
+  background: #414b36;
+  box-shadow: inset 2px 2px 0 #ffffff14, inset -2px -2px 0 #00000038;
+}
+body[data-atelier-style=pixel] [data-composer-card] {
+  border: 2px solid #0d110d;
+  background: #2b3029;
+  box-shadow:
+    inset 2px 2px 0 #68705c,
+    inset -2px -2px 0 #141812,
+    4px 4px 0 #00000052;
+}
+body[data-atelier-style=pixel] [data-chat-flow-kind=user] [class*=_bubble] {
+  border: 2px solid #161b13;
+  background: #3c5130;
+  box-shadow:
+    inset 2px 2px 0 #ffffff12,
+    inset -2px -2px 0 #00000038,
+    3px 3px 0 #00000045;
+}
+body[data-atelier-style=pixel] pre {
+  border: 2px solid #0d110d;
+  border-left: 4px solid #d9a84e;
+  background: #151914;
+  box-shadow: inset 2px 2px 0 #ffffff0a, 3px 3px 0 #00000045;
+}
+body[data-atelier-style=pixel] [class*=_tabActive] {
+  box-shadow: inset 0 -3px 0 #d9a84e;
+}
+body[data-atelier-style=paper] .atelier-root,
+body[data-atelier-style=paper] [data-slot=main] > * {
+  background-color: #f4f0e6;
+  background-image: radial-gradient(#29372f09 .65px, transparent .8px);
+  background-size: 6px 6px;
+}
+html body[data-atelier-style=paper] :is([class$=_newSession], [class*="_newSession "]) {
+  border: 1px solid #bdb5a3;
+  background: #fffdf7;
+  box-shadow: 0 3px 10px #4d473214;
+}
+body[data-atelier-style=paper] [class*=_panelRow][class*=_panelActive] {
+  border-radius: 5px 14px 14px 5px;
+  background: #dce7d6;
+  box-shadow: inset 3px 0 #3d7255;
+}
+body[data-atelier-style=paper] [data-composer-card] {
+  border: 1px solid #d9d2c2;
+  border-top: 3px double #3d7255;
+  background: #fffdf7;
+  box-shadow: 0 12px 30px #4d473214;
+}
+body[data-atelier-style=paper] [data-chat-flow-kind=user] [class*=_bubble] {
+  border: 1px solid #d9d2c2;
+  border-radius: 22px 22px 5px 22px;
+  box-shadow: 0 4px 12px #4d47320d;
+}
+body[data-atelier-style=paper] pre {
+  border: 1px solid #d9d2c2;
+  border-left: 3px solid #3d7255;
+  box-shadow: 0 5px 16px #4d47320d;
+}
+body[data-atelier-style=paper] [class*=_tabActive] {
+  box-shadow: inset 0 -2px 0 #3d7255;
+}
+body[data-atelier-style=midnight] {
+  --dsw-menu-backdrop-filter:blur(28px) saturate(170%);
+}
+body[data-atelier-style=midnight] .atelier-root,
+body[data-atelier-style=midnight] [data-slot=main] > * {
+  background-color: #0b0914;
+  background-image:
+    radial-gradient(
+      circle at 12% 0%,
+      #c38bff16,
+      transparent 38%),
+    radial-gradient(
+      circle at 90% 88%,
+      #73e6ff12,
+      transparent 42%);
+}
+html[data-platform=darwin] body[data-atelier-style=midnight] [class*=_sidebarCol] {
+  background:
+    linear-gradient(
+      160deg,
+      #c38bff12,
+      transparent 45%),
+    #100c1d;
+}
+html body[data-atelier-style=midnight] :is([class$=_newSession], [class*="_newSession "]) {
+  border: 1px solid #73e6ff80;
+  background: #1d1732;
+  box-shadow: 0 0 18px #73e6ff18;
+}
+body[data-atelier-style=midnight] [class*=_panelRow][class*=_panelActive] {
+  background: #29264d;
+  box-shadow: inset 2px 0 #73e6ff, 0 0 16px #73e6ff12;
+}
+body[data-atelier-style=midnight] [data-composer-card] {
+  border: 1px solid #c38bff80;
+  background: #151125e8;
+  box-shadow: 0 0 32px #c38bff1c, inset 0 1px 0 #73e6ff33;
+}
+body[data-atelier-style=midnight] [data-chat-flow-kind=user] [class*=_bubble] {
+  border: 1px solid #ff72b65c;
+  background: #29264d;
+  box-shadow: 0 0 20px #ff72b612;
+}
+body[data-atelier-style=midnight] pre {
+  border: 1px solid #382d56;
+  border-left: 2px solid #c38bff;
+  box-shadow: 0 0 22px #c38bff12;
+}
+body[data-atelier-style=midnight] [class*=_tabActive] {
+  box-shadow: inset 0 -2px 0 #73e6ff, 0 4px 12px -6px #73e6ff;
+}
+body[data-atelier-style=bauhaus] .atelier-root,
+body[data-atelier-style=bauhaus] [data-slot=main] > * {
+  background-color: #f2efe7;
+  background-image:
+    radial-gradient(
+      circle at calc(100% - 34px) 34px,
+      #d9a918 0 10px,
+      transparent 11px),
+    linear-gradient(
+      135deg,
+      transparent 98%,
+      #2058a8 98%);
+}
+html[data-platform=darwin] body[data-atelier-style=bauhaus] [class*=_sidebarCol] {
+  background: #ece8de;
+  border-right: 1px solid #c8c1b4;
+}
+html body[data-atelier-style=bauhaus] :is([class$=_newSession], [class*="_newSession "]) {
+  border: 1px solid #8f8879;
+  border-left: 5px solid #e4472f;
+  background: #fffdf6;
+  color: #171714;
+  box-shadow: none;
+}
+body[data-atelier-style=bauhaus] [class*=_panelRow][class*=_panelActive] {
+  border-radius: 2px;
+  background: #f0d66566;
+  box-shadow: inset 4px 0 #e4472f;
+}
+body[data-atelier-style=bauhaus] [data-composer-card] {
+  border: 1px solid #c8c1b4;
+  border-top: 4px solid #2058a8;
+  background: #fffdf6;
+  box-shadow: 0 12px 30px #302b1f14;
+}
+body[data-atelier-style=bauhaus] [data-chat-flow-kind=user] [class*=_bubble] {
+  border: 1px solid #c8c1b4;
+  border-radius: 4px 18px 18px 18px;
+  background: #f0d66566;
+  box-shadow: none;
+}
+body[data-atelier-style=bauhaus] pre {
+  border: 0;
+  border-left: 4px solid #e4472f;
+  border-radius: 4px;
+  box-shadow: none;
+}
+body[data-atelier-style=bauhaus] [class*=_tabActive] {
+  box-shadow: inset 0 -2px 0 #2058a8;
+}
+body[data-atelier-style=mono] .atelier-root,
+body[data-atelier-style=mono] [data-slot=main] > * {
+  background: #090909;
+}
+html[data-platform=darwin] body[data-atelier-style=mono] [class*=_sidebarCol] {
+  background: #0d0d0c;
+  border-right: 1px solid #41413d;
+}
+html body[data-atelier-style=mono] :is([class$=_newSession], [class*="_newSession "]) {
+  border: 1px solid #f5f5f2;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+body[data-atelier-style=mono] [class*=_panelRow][class*=_panelActive] {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: inset 2px 0 #f5f5f2;
+}
+body[data-atelier-style=mono] [data-composer-card] {
+  border: 1px solid #41413d;
+  border-radius: 0;
+  background: #111111;
+  box-shadow: none;
+}
+body[data-atelier-style=mono] [data-chat-flow-kind=user] [class*=_bubble] {
+  border: 1px solid #41413d;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+body[data-atelier-style=mono] pre {
+  border: 1px solid #292927;
+  border-radius: 0;
+  box-shadow: none;
+}
+body[data-atelier-style=mono] [class*=_tabActive] {
+  box-shadow: inset 0 -2px 0 #f5f5f2;
+}
+body[data-atelier-style=celadon] .atelier-root,
+body[data-atelier-style=celadon] [data-slot=main] > * {
+  background-color: #f3f2eb;
+  background-image:
+    linear-gradient(
+      115deg,
+      transparent 49.7%,
+      #68827108 50%,
+      transparent 50.3%),
+    linear-gradient(
+      25deg,
+      transparent 49.7%,
+      #68827106 50%,
+      transparent 50.3%);
+  background-size: 97px 83px, 113px 107px;
+}
+html[data-platform=darwin] body[data-atelier-style=celadon] [class*=_sidebarCol] {
+  background:
+    linear-gradient(
+      125deg,
+      #edf2e9,
+      #dce7df);
+  border-right: 1px solid #ccd8ce;
+}
+html body[data-atelier-style=celadon] :is([class$=_newSession], [class*="_newSession "]) {
+  border: 1px solid #9e4031;
+  border-radius: 7px;
+  background: #b9533f;
+  color: #fffaf2;
+  box-shadow: inset 0 1px 0 #d98470, 0 4px 12px #b9533f24;
+}
+html body[data-atelier-style=celadon] :is([class$=_newSession], [class*="_newSession "]) [class*=_newSessionContent] {
+  color: #fffaf2;
+}
+body[data-atelier-style=celadon] [class*=_panelRow][class*=_panelActive] {
+  border-radius: 4px 12px 12px 4px;
+  background: #d8e5d9;
+  box-shadow: inset 3px 0 #b9533f;
+}
+body[data-atelier-style=celadon] [data-composer-card] {
+  border: 1px solid #b9cabe;
+  border-radius: 18px;
+  background: #fffef8;
+  box-shadow: inset 0 1px 0 #fff, 0 12px 30px #203d3314;
+}
+body[data-atelier-style=celadon] [data-chat-flow-kind=user] [class*=_bubble] {
+  border: 1px solid #ccd8ce;
+  border-radius: 18px 18px 6px 18px;
+  background: #e5ede7;
+  box-shadow: 0 4px 14px #203d330d;
+}
+body[data-atelier-style=celadon] [data-menu-material] {
+  border: 1px solid #ccd8ce;
+  background: #fffef9;
+  box-shadow: 0 16px 40px #203d3324;
+}
+body[data-atelier-style=celadon] pre {
+  border: 1px solid #ccd8ce;
+  border-left: 3px solid #aa8750;
+  border-radius: 8px;
+  background: #e5ede7;
+  box-shadow: none;
+}
+body[data-atelier-style=celadon] [class*=_tabActive] {
+  box-shadow: inset 0 -2px 0 #b9533f;
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-atelier-style] [data-composer-card],
+  body[data-atelier-style] [class*=_panelRow],
+  body[data-atelier-style] [data-chat-flow-kind=user] [class*=_bubble] {
+    transition: none;
+  }
+}
