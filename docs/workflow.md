@@ -2,9 +2,17 @@
 
 本仓库通过 `dsh-engineering.lock.json` 锁定 `dsh-plugin-engineering`，并在 `mise.toml` 中提供统一开发与验证入口。模块职责见 [DEVELOPMENT.md](DEVELOPMENT.md)，发布流程见 [RELEASING.md](RELEASING.md)。
 
+## 治理原则与受控交付
+
+本仓遵循锁定版本基座契约（`docs/engineering-contract.md`）的跨插件共享治理原则：
+
+- **`Verification is all you need`（验证即一切）**：不靠口头担保，可机械校验的不变量与契约均通过 `mise` 固定运行时和统一门禁验证，以同一份候选 `.tgz` 摘要串联 `E1` 元数据校验与 `E2`/`E3` 宿主验证，并按 `E0`–`E4` 诚实分级。
+- **EGM 磁盘真相与分层文档退场**：`README.md` 保持对外产品视角；L2 阶段计划（`docs/plans/`）与 L3 探索草案（`docs/design/rfc-*.md`）均须在 `docs/README.md` 建链并注明结构化单行退场字段（`Retirement:` / `退场条件:`），L3 另须在前 20 行标注 `EXPLORATORY / UNVERIFIED`；`check:shell` 校验上述索引、结构化退场字段、L3 标头及显式标为 `Status: COMPLETED` / `Status: DONE` 的残留 L2 计划，收官后及时删除 L2 计划由维护者负责。
+- **独立只读复核与受控交付**：遵循 YAGNI 与先做减法，收敛净改动规模；变更须经独立只读复核通过并重跑门禁后再本地提交，未经明确授权不自动 `git push`、不打版本 tag、不越权修改其他仓库。
+
 ## 统一验证门禁
 
-运行 `check:shell` 与 `verify:host` 前，本地需准备包含 `dsh-engineering.lock.json` 锁定标签（`v0.2.0-rc.1`）的 `dsh-plugin-engineering` Git 检出目录。`mise.toml` 优先按 `DSH_ENGINEERING_CHECKOUT` 定位 `locked-run.mjs`（未设置时回退到同级 `../dsh-plugin-engineering`）；`locked-run.mjs` 自身要求基座绝对路径来自 `DSH_ENGINEERING_CHECKOUT`、`${XDG_CONFIG_HOME:-$HOME/.config}/dsh-plugin-engineering/checkout`（或直接执行 `doctor` 时传入 `--checkout <绝对路径>`）。即使使用同级目录，也请先导出 `DSH_ENGINEERING_CHECKOUT` 或写入该配置文件，并可运行 `node "${DSH_ENGINEERING_CHECKOUT:-../dsh-plugin-engineering}/scripts/locked-run.mjs" doctor` 核对基座检出、Node 版本与环境配置。
+运行 `check:shell` 与 `verify:host` 前，本地需准备包含 `dsh-engineering.lock.json` 锁定标签（`v0.2.0`）的 `dsh-plugin-engineering` Git 检出目录。`mise.toml` 优先按 `DSH_ENGINEERING_CHECKOUT` 定位 `locked-run.mjs`（未设置时回退到同级 `../dsh-plugin-engineering`）；`locked-run.mjs` 自身要求基座绝对路径来自 `DSH_ENGINEERING_CHECKOUT`、`${XDG_CONFIG_HOME:-$HOME/.config}/dsh-plugin-engineering/checkout`（或直接执行 `doctor` 时传入 `--checkout <绝对路径>`）。即使使用同级目录，也请先导出 `DSH_ENGINEERING_CHECKOUT` 或写入该配置文件，并可运行 `node "${DSH_ENGINEERING_CHECKOUT:-../dsh-plugin-engineering}/scripts/locked-run.mjs" doctor` 核对基座检出、Node 版本与环境配置。
 
 ```sh
 mise run setup
