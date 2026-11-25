@@ -1,0 +1,41 @@
+min_version = "2026.10.2"
+
+[tools]
+node = "24.22.2"
+
+[env]
+VERIFY_HOST_RUN_DIR = "{% set d = get_env(name='VERIFY_HOST_DIR', default='') | trim %}{% if d != '' %}{{ d }}{% else %}artifacts/verify-host/run-{{ now() | date(format='%Y%m%dT%H%M%SZ') }}-{{ get_random(start=100000, end=999999) }}{{ get_random(start=100000, end=999999) }}{% endif %}"
+
+[tasks.setup]
+description = "Install locked npm dependencies"
+run = "npm ci"
+
+[tasks."check:shell"]
+description = "Run locked dsh-plugin-engineering plugin shell and doc checks"
+run = 'node "${DSH_ENGINEERING_CHECKOUT:-../dsh-plugin-engineering}/scripts/locked-run.mjs" check-plugin'
+
+[tasks."check:plugin"]
+description = "Build client, run Node and browser tests, and verify package"
+run = "npm run check"
+
+[tasks."check:mise"]
+description = "Verify per-run VERIFY_HOST_RUN_DIR isolation across preloaded mise env shells"
+run = "node tests/host/mise-env.check.mjs"
+
+[tasks.check]
+description = "Run engineering shell contract, plugin, and mise env checks"
+depends = ["check:shell", "check:plugin", "check:mise"]
+
+[tasks."verify:pack"]
+description = "Build, verify package, pack host candidate tarball, and inspect tarball metadata"
+run = "node scripts/pack-host-candidate.mjs"
+
+[tasks."verify:host:container"]
+description = "Run locked container host verification against packed candidate tarball"
+depends = ["verify:pack"]
+run = 'node "${DSH_ENGINEERING_CHECKOUT:-../dsh-plugin-engineering}/scripts/locked-run.mjs" container all tests/host/targets.json tests/host/probe.mjs "${VERIFY_HOST_RUN_DIR:-artifacts/verify-host}/candidate.tgz" HEAD "${VERIFY_HOST_RUN_DIR:-artifacts/verify-host}/report.json"'
+
+[tasks."verify:host"]
+description = "Run container host verification and confirm report/candidate SHA-256 parity"
+depends = ["verify:host:container"]
+run = "node scripts/pack-host-candidate.mjs --verify-report"
