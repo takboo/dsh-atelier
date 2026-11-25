@@ -1,5 +1,6 @@
 # 协作与开发约束
 
+- 本仓继承 [dsh-engineering.lock.json](dsh-engineering.lock.json) 锁定版本基座契约（`docs/engineering-contract.md`）的跨插件共享治理原则，涵盖 **`Verification is all you need`**（证据驱动与 `mise` 统一门禁）、EGM 磁盘真相与产品 [README.md](README.md) 保护、以及 YAGNI / 先做减法、变更须经独立只读复核后再提交且未经授权不自动 `git push` 或打 tag；基座全文不在此复述，以下仅列本插件专属边界与红线。
 - 修改运行时集成、打包、测试或截图前，先阅读 [docs/README.md](docs/README.md)、[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)、[docs/workflow.md](docs/workflow.md) 与 [src/README.md](src/README.md)。
 - 修改发布自动化或市场条目之前，先阅读 [docs/RELEASING.md](docs/RELEASING.md)，保持 npm 与 GitHub Release 产物字节一致。
 - 所有业务源码位于 `src/`，修改后通过 `npm run build` 重新生成受跟踪的 `client.js`；保持 DSH 模块 ID 与包名一致，宿主机入口 `index.js` 不含浏览器代码。
