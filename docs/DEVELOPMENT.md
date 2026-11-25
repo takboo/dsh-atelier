@@ -13,22 +13,24 @@
 | `src/locale.js` | 画廊界面的中英文字典。`locale/` 保存插件管理页元信息。 |
 | `src/styles/` | 全局风格材质与画廊局部排版。 |
 | `client.js` | 随包分发的生成产物，由构建脚本打包为 DSH 模块工厂。 |
-| `tests/` | 偏好和实际客户端入口的回归测试。 |
+| `tests/` | 偏好、打包元数据与实际客户端入口测试，以及 `tests/host/` 容器宿主探针配置。 |
 | `scripts/preview/` | 使用实际画廊和官方主题运行时的隔离浏览器宿主。 |
 
-发布和商店收录见 [RELEASING.md](RELEASING.md)。
+文档导航见 [README.md](README.md)，完整验证门禁与 `E0`–`E4` 证据等级见 [workflow.md](workflow.md)，发布和商店收录见 [RELEASING.md](RELEASING.md)，源码文件索引见 `src/README.md`。
 
 ## 本地工作流
 
+仓库通过 `dsh-engineering.lock.json` 与 `mise.toml` 接入 `dsh-plugin-engineering` 工程外壳：
+
 ```sh
-npm ci
-npm run check
+mise run setup
+mise run check
 npm run dev
 ```
 
 `npm run dev` 默认监听 `http://127.0.0.1:4173`；用 `PORT` 修改端口，`/?lang=en` 预览英文。源码修改后重启预览服务。它使用独立浏览器源的存储，不连接真实 DSH、账号或会话。
 
-`npm run check` 构建后执行 Node 测试、浏览器检查与发布包核验。浏览器检查使用临时配置并在退出时关闭浏览器。默认探测常见 Chrome/Chromium 路径，也可指定：
+`mise run check` 并行运行 `check:shell`（锁定的外壳与文档契约检查）与 `check:plugin`（即 `npm run check`，依次构建、执行 Node 测试、浏览器检查与发布包核验）。浏览器检查使用临时配置并在退出时关闭浏览器。默认探测常见 Chrome/Chromium 路径，也可指定：
 
 ```sh
 CHROME_PATH="/path/to/chrome" npm run test:ui
@@ -50,16 +52,17 @@ CHROME_PATH="/path/to/chrome" npm run test:ui
 
 - **Node 集成测试**：加载构建后的真实 `client.js` 与 npm 中固定版本的官方 `ThemeRuntime`，替换 Cordis、DOM 和存储适配器。覆盖原生三种模式接管、连续恢复与再激活、系统搭配、字体持久化后采用、旧格式迁移、存储失败、订阅刷新、其他主题接管和停用清理。
 - **浏览器检查**：运行实际画廊，验证 rc.5 类名夹具上的按钮材质、后代不误命中、主题搭配、原生接管、恢复、刷新持久化、字体调整、390px 布局、键盘操作和英文文案。宿主框架是预览适配器，不能代替真实安装验证。
-- **打包检查**：`npm pack --dry-run` 检查运行入口、patch、图标、元信息、产品文档与截图的覆盖。包内不需要开发依赖。
+- **打包与容器宿主检查**：`npm pack --dry-run` 检查发布文件覆盖；`mise run verify:pack`（`scripts/pack-host-candidate.mjs`）打包独立运行目录下的 `candidate.tgz` 并核验包内真实 `exports`、`locale/*.json` 与 `icon.svg`；`mise run verify:host` 基于 `tests/host/targets.json` 与 `tests/host/probe.mjs` 在隔离容器中运行真实 DSH 准入/拒绝探针（`E2`）。
 
 更改后执行：
 
 ```sh
-npm run check
+mise run check
 npm pack --dry-run
+mise run verify:host
 ```
 
-源码与生成产物一起提交。`npm pack` 的 `prepack` 会重新构建，支持从 tgz 安装。`engines.dsh` 固定为 `0.2.1-rc.5`；扩大兼容范围需要新增宿主验证。
+源码与生成产物一起提交。`npm pack` 的 `prepack` 会重新构建，支持从 tgz 安装。`engines.dsh` 固定为 `0.2.1-rc.5`；扩大兼容范围需要新增宿主验证，并按 [workflow.md](workflow.md) 的 `E0`–`E4` 分级如实汇报。
 
 ## 维护演示截图
 
